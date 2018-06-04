@@ -1,0 +1,111 @@
+version: '2.1'
+
+services:
+  eureka-server:
+    build: eureka-server/
+    depends_on:
+      config-server:
+        condition: service_healthy
+    restart: always
+    network_mode: "host"
+    image: demo-eureka-service
+    hostname: localhost
+    ports:
+      - 9090:9090
+    healthcheck:
+      test: "exit 0"
+
+
+  config-server:
+    build: config-service/
+    restart: always
+    network_mode: "host"
+    image: demo-config-service
+    hostname: localhost
+    ports:
+      - 8891:8891
+    healthcheck:
+      test: "exit 0"
+
+  api-gateway:
+    build: zuul-gatewayproxy/
+    depends_on:
+      config-server:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
+      restaurant-app:
+        condition: service_healthy
+    restart: always
+    network_mode: "host"
+    image: demo-api-gateway
+    hostname: localhost
+    ports:
+      - 8092:8092
+    healthcheck:
+      test: "exit 0"
+
+  restaurant-app:
+    build: restaurant-springboot-mvc-test/
+    image: demo-restaurant-app
+    restart: always
+    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 8080:8080
+    depends_on:
+      config-server:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
+    healthcheck:
+      test: "exit 0"
+
+# services:
+#   eurekaServer:
+#     build: eureka-server/
+#     restart: always
+#     image: demo-eureka-service
+#     network_mode: "host"
+#     hostname: localhost
+#     ports:
+#       - "9090:9090"
+
+
+#   configService:
+#     build: config-service/
+#     image: demo-config-service
+#     restart: always
+#     network_mode: "host"
+#     hostname: localhost
+#     ports:
+#       - "8891:8891"
+#     depends_on:
+#       - eurekaServer
+
+
+#   restaurantApp:
+#     build: restaurant-springboot-mvc-test/
+#     image: demo-restaurant-app
+#     restart: always
+#     network_mode: "host"
+#     hostname: localhost
+#     ports:
+#       - "8080:8080"
+#     depends_on:
+#       - configService
+#       - eurekaServer
+
+
+#   zuulApi:
+#     build: zuul-gatewayproxy/
+#     image: demo-zuul-api
+#     restart: always
+#     network_mode: "host"
+#     hostname: localhost
+#     ports:
+#       - "8092:8092"
+#     depends_on:
+#       - eurekaServer
+#       - configService
+#       - restaurantApp

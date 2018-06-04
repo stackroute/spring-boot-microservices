@@ -1,0 +1,11 @@
+2018-05-22 11:11:33.785  INFO 23545 --- [main] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application application with eureka with status DOWN
+2018-05-22 11:11:33.790  WARN 23545 --- [main] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1526967693790, current=DOWN, previous=UP]
+2018-05-22 11:11:33.792  INFO 23545 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_APPLICATION/172.23.238.157:application: registering service...
+2018-05-22 11:11:33.796  INFO 23545 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 0
+2018-05-22 11:11:33.806  INFO 23545 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_APPLICATION/172.23.238.157:application - registration status: 204
+2018-05-22 11:11:33.810  INFO 23545 --- [main] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
+2018-05-22 11:11:36.813  INFO 23545 --- [main] com.netflix.discovery.DiscoveryClient    : Unregistering ...
+2018-05-22 11:11:36.875  INFO 23545 --- [main] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_APPLICATION/172.23.238.157:application - deregister  status: 200
+2018-05-22 11:11:36.923  INFO 23545 --- [main] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient
+2018-05-22 11:11:36.927  INFO 23545 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-05-22 11:11:36.929  INFO 23545 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
